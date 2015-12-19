@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <title>JavaScript Particle System</title>
 
     <style>
@@ -17,5 +20,19 @@
 <canvas></canvas>
 <script type="text/javascript" src="particleSystem1.js"></script>
 </body>
-
+  <div id="option-div">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon3">Velocity</span>
+      <input type="text" class="velocity form-control" id="basic-url" aria-describedby="basic-addon3">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon3">Emission rate</span>
+      <input type="text" class="rate form-control" id="basic-url" aria-describedby="basic-addon3">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon3">Size</span>
+      <input type="text" class="size form-control" id="basic-url" aria-describedby="basic-addon3">
+    </div>
+    <button type="button" class="btn apply-btn btn-primary">Apply</button>
+</div>
 </html>

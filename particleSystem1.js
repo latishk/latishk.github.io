@@ -24,6 +24,7 @@ function Particle(point, velocity, acceleration) {
     this.position = point || new Vector(0, 0);
     this.velocity = velocity || new Vector(0, 0);
     this.acceleration = acceleration || new Vector(0, 0);
+    this.particleSize = particleSize;
 }
 
 Particle.prototype.submitToFields = function (fields) {
@@ -110,22 +111,19 @@ Emitter.prototype.emitParticle = function() {
     var velocity = Vector.fromAngle(angle, magnitude);
 
     // return our new Particle!
-    return new Particle(position,velocity);
+    var p = new Particle(position,velocity); 
+    p.particleSize = particleSize;
+    return p;
 };
 
 function addNewParticles() {
     // if we're at our max, stop emitting.
     if (particles.length > maxParticles) return;
 
-    // for each emitter
-    for (var i = 0; i < emitters.length; i++) {
-
-        // emit [emissionRate] particles and store them in our particles array
-        for (var j = 0; j < emissionRate; j++) {
-            particles.push(emitters[i].emitParticle());
-        }
-
-    }
+    // emit [emissionRate] particles and store them in our particles array
+    for (var j = 0; j < emissionRate; j++) {
+        particles.push(emitter.emitParticle());
+    }    
 }
 
 function plotParticles(boundsX, boundsY) {
@@ -140,7 +138,7 @@ function plotParticles(boundsX, boundsY) {
         if (pos.x < 0 || pos.x > boundsX || pos.y < 0 || pos.y > boundsY) continue;
 
         // Update velocities and accelerations to account for the fields
-        particle.submitToFields(fields);
+        // particle.submitToFields(fields);
 
         // Move our particles
         particle.move();
@@ -157,7 +155,7 @@ function drawParticles() {
     ctx.fillStyle = 'rgb(0,0,255)';
     for (var i = 0; i < particles.length; i++) {
         var position = particles[i].position;
-        ctx.fillRect(position.x, position.y, particleSize, particleSize);
+        ctx.fillRect(position.x, position.y, particles[i].particleSize, particles[i].particleSize);
     }
 }
 
@@ -176,7 +174,7 @@ var midY = canvas.height / 2;
 
 // Add one emitter located at `{ x : 100, y : 230}` from the origin (top left)
 // that emits at a velocity of `2` shooting out from the right (angle `0`)
-var emitters = [new Emitter(new Vector(midX - 150, midY), Vector.fromAngle(6, 1), Math.PI)];
+var emitter = new Emitter(new Vector(midX - 150, midY), Vector.fromAngle(6, 1), Math.PI);
 
 // Add one field located at `{ x : 400, y : 230}` (to the right of our emitter)
 // that repels with a force of `140`
@@ -204,7 +202,7 @@ function update() {
 function draw() {
     drawParticles();
     fields.forEach(drawCircle);
-    emitters.forEach(drawCircle);
+    emitter.drawCircle;
 
 }
 
@@ -213,3 +211,25 @@ function queue() {
 }
 
 loop();
+
+$(document).ready(function() {
+    $(".apply-btn").bind('click', applyChanges);
+    $("#option-div input").bind('keydown', function(e) {
+        if ( e.keyCode == 13 )
+            applyChanges();
+    });
+});
+
+function applyChanges() {
+     var vel = $(".velocity").val()/1.414;
+        if ( vel !== 0 ) {
+            emitter.velocity.x = vel;
+            emitter.velocity.y = vel;
+        }
+        if ( $(".rate").val() !== "" ) {
+            emissionRate = $(".rate").val();
+        }
+        if ( $(".size").val() !== "" ) {
+            particleSize = $(".size").val();
+        }
+}

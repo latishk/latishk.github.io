@@ -1,0 +1,24 @@
+canvas {
+    position: absolute;
+    z-index: 1;
+}
+
+#option-div {
+    position: absolute;
+    height: 173px;
+    width: 350px;
+    z-index: 2;
+    padding: 10px
+}
+
+#option-div span {
+    width: 110px;
+}
+
+#option-div input {
+    width: 170px;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
