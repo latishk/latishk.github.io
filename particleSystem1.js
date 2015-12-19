@@ -49,8 +49,7 @@ Particle.prototype.submitToFields = function (fields) {
     }
 
     // update our particle's acceleration
-    //this.acceleration = new Vector(totalAccelerationX, totalAccelerationY);
-    this.acceleration = new Vector(0, 0);
+    this.acceleration = new Vector(totalAccelerationX, totalAccelerationY);    
 };
 
 Particle.prototype.move = function () {
@@ -138,7 +137,7 @@ function plotParticles(boundsX, boundsY) {
         if (pos.x < 0 || pos.x > boundsX || pos.y < 0 || pos.y > boundsY) continue;
 
         // Update velocities and accelerations to account for the fields
-        // particle.submitToFields(fields);
+        particle.submitToFields(fields);
 
         // Move our particles
         particle.move();
@@ -179,8 +178,7 @@ var emitter = new Emitter(new Vector(midX - 150, midY), Vector.fromAngle(6, 1), 
 // Add one field located at `{ x : 400, y : 230}` (to the right of our emitter)
 // that repels with a force of `140`
 var fields = [
-    //new Field(new Vector(midX - 300, midY + 20), 900),
-    //new Field(new Vector(midX - 200, midY + 10), -50),
+    new Field(new Vector(midX + 300, midY ), 900),
 ];
 
 function loop() {
