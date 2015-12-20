@@ -5,10 +5,12 @@ canvas {
 
 #option-div {
     position: absolute;
-    height: 173px;
+    height: 373px;
     width: 350px;
     z-index: 2;
-    padding: 10px
+    padding: 10px;
+    /*background-color: rgba(68, 68, 68, 0.16);*/
+    /*border: thin;*/
 }
 
 #option-div span {
