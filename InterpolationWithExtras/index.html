@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>
+        LK- Interpolation Assignment
+    </title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.3.0/math.js"></script>
+    <script type="text/javascript" src="interpolation.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap.min.css">
+</head>
+<body>
+<div id="option-div">
+    <div class="input-group">
+        <label> Select The Interpolation </label><br>
+        <span>Linear Interpolation</span><input type="radio" name="interpolation" class="interpolation_type" value="L" onclick="activateInterpolation(this)" checked="checked" />
+        <span>Catmull-Rom</span><input type="radio" name="interpolation" class="interpolation_type" value="C" onclick="activateInterpolation(this)" />
+        <!--<input type="radio" name="interpolation" class="interpolation_type" value="D" onclick="activateInterpolation(this)" /><span>De-Casteljau</span>-->
+    </div>
+    <div class="input-group">
+        <label> Select for u </label><br><span>Normal</span>
+        <input type="radio" name="mapping" class="mapping_type" value="linear" onclick="activateMapping(this)" checked="checked"/>
+        <!--<input type="radio" name="mapping" class="mapping_type" value="slow-in,slow-out" onclick="activateMapping(this)" /><span>Slow-in, Slow-out</span>-->
+        <br><span>Slow in/fast out</span>
+        <input type="radio" name="mapping" class="mapping_type" value="slow-in,fast-out" onclick="activateMapping(this)" />
+    </div>
+    <div class="input-group">
+        <label> </label>
+        <label> T: </label><input id="KBt" type="range" min="-1" max="1" step="0.1"/>
+        <label> C: </label><input id="KBc" type="range" min="-1" max="1" step="0.1"/>
+        <label> B: </label><input id="KBb" type="range" min="-1" max="1" step="0.1"/>
+        <!--</div>-->
+        <!--<div >-->
+    </div>
+    <button onclick="startAnimation(10000)" class="btn apply-btn btn-primary">Start</button>
+    <button onclick="stopAnimation()" class="btn apply-btn btn-primary">Stop</button>
+
+</div>
+</div>
+</body>
+</html>
